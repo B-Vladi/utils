@@ -1,7 +1,6 @@
 'use strict';
 /**
  * @fileOverview Библиотека вспомогательных функций для JavaScript-а.
- * @author Vladislav Kurkin <b-vladi@yandex-team.ru>
  */
 
 /**
@@ -577,12 +576,12 @@ function create(prototype) {
         prototype = prototype.prototype;
     }
 
-    if (prototype != null) {
+    if (prototype == null) {
+        object = {};
+    } else {
         Constructor.prototype = prototype;
         object = new Constructor();
         Constructor.prototype = null;
-    } else {
-        object = {};
     }
 
     return object;
