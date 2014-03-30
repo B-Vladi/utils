@@ -384,7 +384,7 @@ function toObject(value, defaultValue) {
  * @returns {Array}
  */
 function toArray(value, defaultValue) {
-    if (value == null) {
+    if (isUndefinedOrNull(value)) {
         return [];
     }
 
