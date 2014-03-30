@@ -312,6 +312,17 @@ function isNull(value) {
 }
 
 /**
+ * Проверяет, имеет ли значение тип undefined или null.
+ * @name utils.isUndefinedOrNull
+ * @function
+ * @param {*} value Проверяемое значение.
+ * @returns {Boolean}
+ */
+function isUndefinedOrNull(value) {
+    return value == null;
+}
+
+/**
  * Если первый параметр проходит проверку на {@link utils.isString}, будет возвращено его примитивное значение.
  * Иначе будет возвращено знаение параметра defaultValue.
  * @name utils.toString
@@ -653,6 +664,7 @@ utils.isError = isError;
 utils.isFunction = isFunction;
 utils.isUndefined = isUndefined;
 utils.isNull = isNull;
+utils.isUndefinedOrNull = isUndefinedOrNull;
 utils.toType = toType;
 utils.toString = toString;
 utils.toNumber = toNumber;
