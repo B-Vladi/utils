@@ -51,6 +51,14 @@ utils.BOOLEAN = 'Boolean';
 utils.ARRAY = 'Array';
 
 /**
+ * Имя объекта Arguments
+ * @constant
+ * @default 'Arguments'
+ * @type {String}
+ */
+utils.ARGUMENTS = 'Arguments';
+
+/**
  * Имя конструктора RegExp
  * @constant
  * @default 'RegExp'
@@ -216,6 +224,17 @@ function isArray(value) {
 }
 
 /**
+ * Проверяет, является ли значение объектом Arguments.
+ * @name utils.isArguments
+ * @function
+ * @param {*} value Проверяемое значение.
+ * @returns {Boolean}
+ */
+function isArguments(value) {
+    return value != null && is(value, utils.ARGUMENTS);
+}
+
+/**
  * Проверяет, является ли значение регулярным выражением.
  * @name utils.isRegExp
  * @function
@@ -354,7 +373,31 @@ function toObject(value, defaultValue) {
  * @returns {Array}
  */
 function toArray(value, defaultValue) {
-    return isArray(value) ? value : arguments.length === 1 ? [] : defaultValue;
+    if (value == null) {
+        return [];
+    }
+
+    if (isArray(value)) {
+        return value;
+    }
+
+    if (isArguments(value)) {
+        var index = 0;
+        var length = value.length;
+        var array = new Array(length);
+
+        while (index < length) {
+            array[index] = value[index++];
+        }
+
+        return array;
+    }
+
+    if (arguments.length === 1) {
+        return [];
+    }
+
+    return defaultValue;
 }
 
 /**
@@ -603,6 +646,7 @@ utils.isFloat = isFloat;
 utils.isBoolean = isBoolean;
 utils.isObject = isObject;
 utils.isArray = isArray;
+utils.isArguments = isArguments;
 utils.isRegExp = isRegExp;
 utils.isDate = isDate;
 utils.isError = isError;
