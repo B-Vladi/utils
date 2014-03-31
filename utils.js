@@ -275,7 +275,7 @@ function isError(value) {
  * @returns {Boolean}
  */
 function isObject(value) {
-    return value != null && is(value, utils.OBJECT);
+    return value instanceof Object;
 }
 
 /**
@@ -297,7 +297,7 @@ function isFunction(value) {
  * @returns {Boolean}
  */
 function isUndefined(value) {
-    return value === utils.undefined;
+    return typeof value === 'undefined';
 }
 
 /**
@@ -384,7 +384,7 @@ function toObject(value, defaultValue) {
  * @returns {Array}
  */
 function toArray(value, defaultValue) {
-    if (isUndefinedOrNull(value)) {
+    if (value) {
         return [];
     }
 
